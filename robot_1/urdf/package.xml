@@ -1,0 +1,616 @@
+<sdf version='1.7'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <contact>
+              <collide_bitmask>65535</collide_bitmask>
+              <ode/>
+            </contact>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='robot_1'>
+      <link name='dummy_link'>
+        <inertial>
+          <pose>0.010624 0.085252 -0.031787 0 -0 0</pose>
+          <mass>25.0806</mass>
+          <inertia>
+            <ixx>1.99563</ixx>
+            <ixy>9.19403e-16</ixy>
+            <ixz>-6.59195e-17</ixz>
+            <iyy>0.548345</iyy>
+            <iyz>0.0592024</iyz>
+            <izz>2.49405</izz>
+          </inertia>
+        </inertial>
+        <collision name='dummy_link_fixed_joint_lump__base_link_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='dummy_link_fixed_joint_lump__base_link_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='rotary_right' type='revolute'>
+        <pose relative_to='dummy_link'>0.20062 0.19 0.43306 1.5708 1.2919 1.5708</pose>
+        <parent>dummy_link</parent>
+        <child>rear_right</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+            <effort>0</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='rear_right'>
+        <pose relative_to='rotart_right'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0.064839 0 -0 0</pose>
+          <mass>2.20069</mass>
+          <inertia>
+            <ixx>0.00641185</ixx>
+            <ixy>-5.42101e-19</ixy>
+            <ixz>-4.72524e-18</ixz>
+            <iyy>0.00641185</iyy>
+            <iyz>1.32885e-18</iyz>
+            <izz>0.0109959</izz>
+          </inertia>
+        </inertial>
+        <collision name='rear_right_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/rear_right.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='rear_right_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/rear_right.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='rotary_left' type='revolute'>
+        <pose relative_to='dummy_link'>-0.17938 0.19 0.43306 1.5708 0.11294 -1.5708</pose>
+        <parent>dummy_link</parent>
+        <child>rear_left</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+            <effort>0</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='rear_left'>
+        <pose relative_to='rotary_left'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 -0 0.064839 0 -0 0</pose>
+          <mass>2.20069</mass>
+          <inertia>
+            <ixx>0.00641185</ixx>
+            <ixy>0</ixy>
+            <ixz>3.6442e-19</ixz>
+            <iyy>0.00641185</iyy>
+            <iyz>-5.25481e-18</iyz>
+            <izz>0.0109959</izz>
+          </inertia>
+        </inertial>
+        <collision name='rear_left_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/rear_left.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='rear_left_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/rear_left.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='steer_left' type='revolute'>
+        <pose relative_to='dummy_link'>-0.13938 0 -0.32694 1.5708 -0 -3.14159</pose>
+        <parent>dummy_link</parent>
+        <child>vertical_left</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+            <effort>0</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='vertical_left'>
+        <pose relative_to='steer_left'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0.010281 0.06966 0 -0 0</pose>
+          <mass>0.639935</mass>
+          <inertia>
+            <ixx>0.00341195</ixx>
+            <ixy>-4.09553e-19</ixy>
+            <ixz>-4.93656e-19</ixz>
+            <iyy>0.00299511</iyy>
+            <iyz>-0.000711837</iyz>
+            <izz>0.000848979</izz>
+          </inertia>
+        </inertial>
+        <collision name='vertical_left_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/vertical_left.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='vertical_left_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/vertical_left.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='castor_left' type='revolute'>
+        <pose relative_to='vertical_left'>0.015 0.095 0.1825 -1.5708 -1.0471 -1.5708</pose>
+        <parent>vertical_left</parent>
+        <child>front_left</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+            <effort>0</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='front_left'>
+        <pose relative_to='castor_left'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0.064839 0 -0 0</pose>
+          <mass>2.20069</mass>
+          <inertia>
+            <ixx>0.00641185</ixx>
+            <ixy>4.33681e-19</ixy>
+            <ixz>1.85547e-18</ixz>
+            <iyy>0.00641185</iyy>
+            <iyz>3.22474e-18</iyz>
+            <izz>0.0109959</izz>
+          </inertia>
+        </inertial>
+        <collision name='front_left_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/front_left.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='front_left_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/front_left.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='steer_right' type='revolute'>
+        <pose relative_to='dummy_link'>0.16062 0 -0.32694 1.5708 -0 -3.14159</pose>
+        <parent>dummy_link</parent>
+        <child>vertical_right</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+            <effort>0</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='vertical_right'>
+        <pose relative_to='steer_right'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>-0 0.010281 0.06966 0 -0 0</pose>
+          <mass>0.639935</mass>
+          <inertia>
+            <ixx>0.00341195</ixx>
+            <ixy>-3.55508e-19</ixy>
+            <ixz>-6.87848e-19</ixz>
+            <iyy>0.00299511</iyy>
+            <iyz>-0.000711837</iyz>
+            <izz>0.000848979</izz>
+          </inertia>
+        </inertial>
+        <collision name='vertical_right_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/vertical_right.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='vertical_right_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/vertical_right.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='castor_right' type='revolute'>
+        <pose relative_to='vertical_right'>-0.015 0.095 0.1825 -1.5708 -0.46547 1.5708</pose>
+        <parent>vertical_right</parent>
+        <child>front_right</child>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>0</lower>
+            <upper>0</upper>
+            <effort>0</effort>
+            <velocity>0</velocity>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name='front_right'>
+        <pose relative_to='castor_right'>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0 0.064839 0 -0 0</pose>
+          <mass>2.20069</mass>
+          <inertia>
+            <ixx>0.00641185</ixx>
+            <ixy>-1.0842e-18</ixy>
+            <ixz>4.10799e-18</ixz>
+            <iyy>0.00641185</iyy>
+            <iyz>1.99172e-18</iyz>
+            <izz>0.0109959</izz>
+          </inertia>
+        </inertial>
+        <collision name='front_right_collision'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/front_right.STL</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='front_right_visual'>
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/sheriarty/catkin_ws/src/robot_1/robot_1/meshes/front_right.STL</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>0 0 0 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>301 287000000</sim_time>
+      <real_time>348 571571461</real_time>
+      <wall_time>1634522118 785197597</wall_time>
+      <iterations>301287</iterations>
+      <model name='ground_plane'>
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='robot_1'>
+        <pose>-0.859711 3.55073 0.285042 -1.55955 5.5e-05 1.02136</pose>
+        <scale>1 1 1</scale>
+        <link name='dummy_link'>
+          <pose>-0.859711 3.55073 0.285042 -1.55955 5.5e-05 1.02136</pose>
+          <velocity>0.003032 -0.001249 0.002951 -0.002909 -0.00259 0.006236</velocity>
+          <acceleration>0.226265 0.106464 6.21917 0.27544 -1.43076 2.46955</acceleration>
+          <wrench>5.67485 2.67017 155.98 0 -0 0</wrench>
+        </link>
+        <link name='front_left'>
+          <pose>-0.744304 3.29901 0.099983 1.57051 1.05852 -0.549758</pose>
+          <velocity>0.005291 0.001318 0.009078 -0.02524 0.030393 -0.084979</velocity>
+          <acceleration>-7.31215 7.40676 23.0176 -2.15359 -0.702756 -3.07081</acceleration>
+          <wrench>-16.0918 16.3 50.6546 0 -0 0</wrench>
+        </link>
+        <link name='front_right'>
+          <pose>-0.57197 3.58045 0.099928 1.57092 0.45423 2.59223</pose>
+          <velocity>0.002277 0.000239 0.002111 -0.008054 0.014349 0.010142</velocity>
+          <acceleration>-2.13359 0.103445 2.27161 -1.16669 -1.28824 0.394434</acceleration>
+          <wrench>-4.69537 0.227649 4.99911 0 -0 0</wrench>
+        </link>
+        <link name='rear_left'>
+          <pose>-1.32451 3.62499 0.099933 1.57036 -1.44661 -0.549003</pose>
+          <velocity>0.003064 -0.004784 0.00141 -0.003643 -0.002846 0.006207</velocity>
+          <acceleration>0.558245 -1.76608 3.92815 -0.222075 -1.30887 -2.9319</acceleration>
+          <wrench>1.22852 -3.8866 8.64463 0 -0 0</wrench>
+        </link>
+        <link name='rear_right'>
+          <pose>-1.12607 3.94906 0.099912 -1.57079 0.290155 -0.549415</pose>
+          <velocity>0.000876 -0.002674 0.00045 0.019476 -0.003207 0.013134</velocity>
+          <acceleration>-1.06124 0.41199 3.25875 2.1658 0.484119 1.57462</acceleration>
+          <wrench>-2.33546 0.906663 7.17149 0 -0 0</wrench>
+        </link>
+        <link name='vertical_left'>
+          <pose>-0.653692 3.26114 0.281385 3.13017 -0.000229 -2.12031</pose>
+          <velocity>0.00459 -0.0006 0.006674 -0.025526 0.04987 -0.084739</velocity>
+          <acceleration>-5.84129 -1.00391 14.4369 2.71232 -0.750612 1.37617</acceleration>
+          <wrench>-3.73804 -0.642435 9.2387 0 -0 0</wrench>
+        </link>
+        <link name='vertical_right'>
+          <pose>-0.497033 3.51699 0.281356 3.13036 -6.9e-05 -2.12026</pose>
+          <velocity>0.002765 0.000573 0.004129 -0.006485 -0.002018 0.000194</velocity>
+          <acceleration>-0.731571 -0.510352 7.71557 1.62226 -0.8276 -2.76386</acceleration>
+          <wrench>-0.468158 -0.326592 4.93747 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name='sun'>
+        <pose>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>5.87552 -0.172749 0.195889 -0 0.067643 2.72819</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+  </world>
+</sdf>

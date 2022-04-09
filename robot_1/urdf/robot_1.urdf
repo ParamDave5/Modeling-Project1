@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-1-g15f4949  Build Version: 1.6.7594.29634
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="robot_1">
+  <link name = "dummy_link" />
+  <joint 
+    name = "dummy_link_to_base_link" 
+    type = "fixed">
+    <parent link ="dummy_link"/>
+    <child link="base_link" />
+  </joint>
+    
+  <transmission name="steer_left">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="steer_left">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+      <actuator name="rear_left_actuator">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      </actuator>
+  </transmission>
+     
+  <transmission name="steer_right">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="steer_right">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rear_right_actuator">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+  
+  
+  <transmission name="rear_left">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rotary_left">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+      <actuator name="rotary_left_actuator">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </actuator>
+  </transmission>
+     
+  <transmission name="rear_right">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rotary_right">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+      <actuator name="rotary_right_actuator">
+        <mechanicalReduction>1</mechanicalReduction>
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </actuator>
+  </transmission>
+  
+   
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0106243866569402 0.0852521272408004 -0.0317866920082924"
+        rpy="0 0 0" />
+      <mass
+        value="25.0805554983238" />
+      <inertia
+        ixx="1.99562741974796"
+        ixy="9.25360912925372E-16"
+        ixz="-6.7823571365805E-17"
+        iyy="0.548344997724626"
+        iyz="0.0592023746088173"
+        izz="2.49405185003044" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="rear_left">
+    <inertial>
+      <origin
+        xyz="8.32667268468867E-17 -4.44089209850063E-16 0.0648394004282658"
+        rpy="0 0 0" />
+      <mass
+        value="2.20068565383965" />
+      <inertia
+        ixx="0.00641184548810948"
+        ixy="0"
+        ixz="3.64420249209196E-19"
+        iyy="0.00641184548810948"
+        iyz="-5.25481092951005E-18"
+        izz="0.0109959473516919" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/rear_left.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/rear_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rotary_left"
+    type="revolute">
+    <origin
+      xyz="-0.17938 0.19 0.43306"
+      rpy="1.5708 0.11294 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear_left" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1000000"
+      upper="1000000"
+      effort="10"
+      velocity="100" />
+  </joint>
+  <link
+    name="rear_right">
+    <inertial>
+      <origin
+        xyz="0 0 0.0648394004282658"
+        rpy="0 0 0" />
+      <mass
+        value="2.20068565383965" />
+      <inertia
+        ixx="0.00641184548810948"
+        ixy="-5.42101086242752E-19"
+        ixz="-4.7252406288901E-18"
+        iyy="0.00641184548810948"
+        iyz="1.328849025911E-18"
+        izz="0.0109959473516919" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/rear_right.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/rear_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="rotary_right"
+    type="revolute">
+    <origin
+      xyz="0.20062 0.19 0.43306"
+      rpy="1.5708 1.2919 1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear_right" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1000000"
+      upper="1000000"
+      effort="10"
+      velocity="100" />
+  </joint>
+  <link
+    name="vertical_left">
+    <inertial>
+      <origin
+        xyz="0 0.0102813138093797 0.0696600330079089"
+        rpy="0 0 0" />
+      <mass
+        value="0.639934698133308" />
+      <inertia
+        ixx="0.00341195149379141"
+        ixy="-4.09553293302807E-19"
+        ixz="-4.93655903399071E-19"
+        iyy="0.00299511296011922"
+        iyz="-0.000711836821973023"
+        izz="0.00084897915232629" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/vertical_left.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/vertical_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="steer_left"
+    type="revolute">
+    <origin
+      xyz="-0.13938 0 -0.32694"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="vertical_left" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.785398"
+      upper="0.785398"
+      effort="10"
+      velocity="100" />
+  </joint>
+  <link
+    name="front_left">
+    <inertial>
+      <origin
+        xyz="1.11022302462516E-16 1.11022302462516E-16 0.0648394004282658"
+        rpy="0 0 0" />
+      <mass
+        value="2.20068565383965" />
+      <inertia
+        ixx="0.00641184548810947"
+        ixy="4.33680868994202E-19"
+        ixz="1.85547375152391E-18"
+        iyy="0.00641184548810947"
+        iyz="3.22474202483583E-18"
+        izz="0.0109959473516919" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/front_left.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/front_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="castor_left"
+    type="revolute">
+    <origin
+      xyz="0.015 0.095 0.1825"
+      rpy="-1.5708 -1.0471 -1.5708" />
+    <parent
+      link="vertical_left" />
+    <child
+      link="front_left" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-100000"
+      upper="100000"
+      effort="10"
+      velocity="100" />
+  </joint>
+  <link
+    name="vertical_right">
+    <inertial>
+      <origin
+        xyz="-2.77555756156289E-17 0.0102813138093797 0.0696600330079089"
+        rpy="0 0 0" />
+      <mass
+        value="0.639934698133308" />
+      <inertia
+        ixx="0.00341195149379141"
+        ixy="-3.55508299671983E-19"
+        ixz="-6.87848264443758E-19"
+        iyy="0.00299511296011922"
+        iyz="-0.000711836821973023"
+        izz="0.000848979152326289" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/vertical_right.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/vertical_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="steer_right"
+    type="revolute">
+    <origin
+      xyz="0.16062 0 -0.32694"
+      rpy="1.5708 0 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="vertical_right" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.785398"
+      upper="0.785398"
+      effort="10"
+      velocity="100" />
+  </joint>
+  <link
+    name="front_right">
+    <inertial>
+      <origin
+        xyz="5.55111512312578E-17 0 0.0648394004282658"
+        rpy="0 0 0" />
+      <mass
+        value="2.20068565383965" />
+      <inertia
+        ixx="0.00641184548810948"
+        ixy="-1.0842021724855E-18"
+        ixz="4.1079946180896E-18"
+        iyy="0.00641184548810948"
+        iyz="1.99172042983547E-18"
+        izz="0.0109959473516919" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/front_right.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robot_1/meshes/front_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="castor_right"
+    type="revolute">
+    <origin
+      xyz="-0.015 0.095 0.1825"
+      rpy="-1.5708 -0.46547 1.5708" />
+    <parent
+      link="vertical_right" />
+    <child
+      link="front_right" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1000000"
+      upper="1000000"
+      effort="10"
+      velocity="100" />
+  </joint>
+</robot>
